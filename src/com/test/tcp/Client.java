@@ -2,17 +2,25 @@ package com.test.tcp;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import javax.xml.crypto.Data;
+
 public class Client {
 	public static void main(String[] args) throws Exception {
-		Socket socket = new Socket("192.168.0.104", 8888);
+		Socket socket = new Socket("192.168.1.2", 8888);
 //		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 		OutputStream out= socket.getOutputStream();
 //		bw.write("hello");
+		byte[] data = new byte[1024*1024*256]; 
+		FileInputStream fis = new FileInputStream(new File("D:\\install\\OS\\ubuntu-17.10-desktop-amd64.iso"));
+		int length = fis.read(data);
+		out.write(data);
 		out.write("hello".getBytes());
 //		bw.flush();
 		System.out.println(out.toString());

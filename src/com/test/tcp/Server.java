@@ -21,7 +21,7 @@ public class Server {
 //		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		String msg;
 		int len;
-		byte[] data = new byte[1024];
+		byte[] data = new byte[1024*1024*256];
 		len = is.read(data);
 		System.out.println(new String(data, 0, len));
 //		while((len = is.read(data)) != -1) {
